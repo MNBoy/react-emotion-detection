@@ -42,7 +42,8 @@ function Webcam() {
   };
 
   const handleVideoOnPlay = () => {
-    setInterval(async () => {
+    if (window.interval) clearInterval(window.interval);
+    window.interval = setInterval(async () => {
       if (canvasRef && canvasRef.current) {
         /* Creating a canvas element and setting the width and height of the canvas element. */
         canvasRef.current.innerHTML = faceapi.createCanvas(videoRef.current);
